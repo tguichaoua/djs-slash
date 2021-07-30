@@ -34,11 +34,11 @@
     "devDependencies": {
         "@types/chai": "^4.2.21",
         "@types/mocha": "^9.0.0",
-        "@types/node": "^16.4.2",
+        "@types/node": "^16.4.7",
         "@typescript-eslint/eslint-plugin": "^4.28.4",
         "@typescript-eslint/parser": "^4.28.4",
         "chai": "^4.3.4",
-        "discord.js": "^13.0.0-dev.4f1f32f.1627517033",
+        "discord.js": "^13.0.0-dev.2675b08.1627646567",
         "eslint": "^7.31.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-prettier": "^3.4.0",
@@ -51,7 +51,7 @@
         "typescript": "^4.3.5"
     },
     "peerDependencies": {
-        "discord.js": "13.x"
+        "discord.js": "^13.0.0-dev"
     },
     "engines": {
         "node": ">=14.0.0"
