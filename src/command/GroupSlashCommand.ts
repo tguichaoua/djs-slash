@@ -22,8 +22,8 @@ export class GroupSlashCommand extends SlashCommand {
 
     /** @internal */
     async execute(interaction: CommandInteraction): Promise<void> {
-        const subCommandName = interaction.options.getSubCommand();
-        const groupName = interaction.options.getSubCommandGroup(false);
+        const subCommandName = interaction.options.getSubcommand();
+        const groupName = interaction.options.getSubcommandGroup(false);
 
         const executable =
             groupName !== null
