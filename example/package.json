@@ -1,0 +1,19 @@
+{
+    "private": true,
+    "name": "djs-slash-example",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "scripts": {
+        "start": "ts-node src/index.ts"
+    },
+    "dependencies": {
+        "discord.js": "^13.0.0-dev.4f1f32f.1627517033",
+        "djs-slash": "file:..",
+        "node-fetch": "^2.6.1"
+    },
+    "devDependencies": {
+        "@types/node-fetch": "^2.5.12",
+        "ts-node": "^10.1.0"
+    }
+}

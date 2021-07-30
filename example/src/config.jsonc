@@ -1,0 +1,4 @@
+{
+    "token": "YOUR_BOT_TOKEN", // The token of your bot
+    "guildId": "0000000000000" // The guild Id where to deploy slash commands
+}
