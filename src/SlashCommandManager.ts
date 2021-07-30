@@ -15,8 +15,8 @@ export class SlashCommandManager {
     }
 
     async execute(interaction: CommandInteraction): Promise<void> {
-        const handler = this.commands.get(interaction.commandName);
-        if (handler) handler.execute(interaction);
+        const command = this.commands.get(interaction.commandName);
+        if (command) command.execute(interaction);
     }
 
     static create(options?: SlashCommandManagerOptions): SlashCommandManager {
@@ -56,10 +56,10 @@ export class SlashCommandManager {
             }
         };
 
-        const commandHandlers = new Map<string, SlashCommand>();
+        const commands = new Map<string, SlashCommand>();
 
         for (const l1 of fs.readdirSync(commandFolder, { withFileTypes: true })) {
-            if (l1.isFile()) loadFile(commandFolder, l1.name, commandHandlers);
+            if (l1.isFile()) loadFile(commandFolder, l1.name, commands);
             else if (l1.isDirectory()) {
                 const folder1 = path.join(commandFolder, l1.name);
 
@@ -95,14 +95,14 @@ export class SlashCommandManager {
                     }
                 }
 
-                commandHandlers.set(
+                commands.set(
                     l1.name,
                     new GroupSlashCommand(l1.name, description, defaultPermission, subCommands, groups),
                 );
             }
         }
 
-        return new SlashCommandManager(commandHandlers);
+        return new SlashCommandManager(commands);
     }
 }
 
