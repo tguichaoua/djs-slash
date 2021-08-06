@@ -3,6 +3,7 @@ import {
     ApplicationCommandOptionData,
     CommandInteraction,
     CommandInteractionOption,
+    Constants,
 } from "discord.js";
 import { SlashCommandCallback } from "../SlashCommandCallback";
 import { SlashCommandData } from "../data/SlashCommandData";
@@ -48,14 +49,22 @@ function resolveOption(type: SlashCommandOptionsType, opt: CommandInteractionOpt
         case "INTEGER":
         case "STRING":
         case "NUMBER":
+        case Constants.ApplicationCommandOptionTypes.BOOLEAN:
+        case Constants.ApplicationCommandOptionTypes.INTEGER:
+        case Constants.ApplicationCommandOptionTypes.STRING:
+        case Constants.ApplicationCommandOptionTypes.NUMBER:
             return opt.value;
         case "CHANNEL":
+        case Constants.ApplicationCommandOptionTypes.CHANNEL:
             return opt.channel;
         case "ROLE":
+        case Constants.ApplicationCommandOptionTypes.ROLE:
             return opt.role;
         case "USER":
+        case Constants.ApplicationCommandOptionTypes.USER:
             return opt.user;
         case "MENTIONABLE":
+        case Constants.ApplicationCommandOptionTypes.MENTIONABLE:
             return opt.member ?? opt.user ?? opt.role;
     }
 }
