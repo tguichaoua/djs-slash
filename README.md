@@ -6,7 +6,7 @@
      <a href="https://github.com/tguichaoua/djs-slash/blob/main/LICENSE" target="_blank">
         <img alt="License: MIT" src="https://img.shields.io/github/license/tguichaoua/djs-slash" />
     </a>
-    <img src="https://img.shields.io/badge/node-%3E%3D14.0.0-blue.svg" />
+    <img src="https://img.shields.io/badge/node-%3E%3D16.6.0-blue.svg" />
     <img alt="Dependency discordjs" src="https://img.shields.io/npm/dependency-version/djs-slash/peer/discord.js" />
 </p>
 
