@@ -54,7 +54,7 @@
         "discord.js": "^13.0.0-dev"
     },
     "engines": {
-        "node": ">=14.0.0"
+        "node": ">=16.6.0"
     },
     "files": [
         "dist"
