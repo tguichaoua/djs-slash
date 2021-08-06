@@ -8,7 +8,7 @@
         "start": "ts-node src/index.ts"
     },
     "dependencies": {
-        "discord.js": "^13.0.0-dev.4f1f32f.1627517033",
+        "discord.js": "^13.0.0",
         "djs-slash": "file:..",
         "node-fetch": "^2.6.1"
     },
