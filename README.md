@@ -12,8 +12,6 @@
 
 > A Slash Command handler for discord.js v13
 
-**Warning**: `dsj-slash` is based on [`discord.js`](https://www.npmjs.com/package/discord.js) v13 currently under developpement. `dsj-slash`'s API may change a lot until it's `1.x` relase.
-
 ## Install
 
 Install by running this command:
