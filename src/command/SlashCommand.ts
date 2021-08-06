@@ -20,7 +20,7 @@ export abstract class SlashCommand {
         return this instanceof GroupSlashCommand;
     }
 
-    static define<Opt extends SlashCommandOptions>(
+    static define<Opt extends SlashCommandOptions = never>(
         description: string,
         options: { defaultPermission?: boolean; options?: Opt },
         callback: SlashCommandCallback<Opt>,
