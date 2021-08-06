@@ -19,7 +19,7 @@ export default SlashCommand.define(
     },
     async (interaction, { kind }) => {
         // kind: string
-        await interaction.defer();
+        await interaction.deferReply();
         try {
             const [{ url }] = await fetch(kind).then((res) => res.json());
             if (typeof url === "string") {
