@@ -1,6 +1,7 @@
 import { SlashCommandOptionsType } from "./SlashCommandOptionsType";
 import { ApplicationCommandOptionData, ApplicationCommandOptionType, Constants } from "discord.js";
 import { isArrayOf, isOptionnal, isRecord, isRecordOf, isTypeof, TypeGuard } from "./utils/typeguard";
+import { ApplicationCommandOptionTypes } from "discord.js/typings/enums";
 
 export interface Choice<T extends string | number> {
     readonly name: string;
@@ -12,15 +13,27 @@ export type SlashCommandOptionsData = {
     readonly required?: boolean;
 } & (
     | {
-          readonly type: Exclude<SlashCommandOptionsType, "STRING" | "INTEGER" | "NUMBER">;
+          readonly type: Exclude<
+              SlashCommandOptionsType,
+              | "STRING"
+              | "INTEGER"
+              | "NUMBER"
+              | ApplicationCommandOptionTypes.STRING
+              | ApplicationCommandOptionTypes.INTEGER
+              | ApplicationCommandOptionTypes.NUMBER
+          >;
           readonly choices?: never;
       }
     | {
-          readonly type: "STRING";
+          readonly type: "STRING" | ApplicationCommandOptionTypes.STRING;
           readonly choices?: ReadonlyArray<Choice<string>>;
       }
     | {
-          readonly type: "INTEGER" | "NUMBER";
+          readonly type:
+              | "INTEGER"
+              | "NUMBER"
+              | ApplicationCommandOptionTypes.INTEGER
+              | ApplicationCommandOptionTypes.NUMBER;
           readonly choices?: ReadonlyArray<Choice<number>>;
       }
 );
