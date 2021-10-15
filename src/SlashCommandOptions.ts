@@ -1,7 +1,7 @@
-import { SlashCommandOptionsType } from "./SlashCommandOptionsType";
-import { ApplicationCommandOptionData, ApplicationCommandOptionType, Constants } from "discord.js";
-import { isArrayOf, isOptionnal, isRecord, isRecordOf, isTypeof, TypeGuard } from "./utils/typeguard";
-import { ApplicationCommandOptionTypes } from "discord.js/typings/enums";
+import { SlashCommandOptionsType } from './SlashCommandOptionsType';
+import { ApplicationCommandOptionData, ApplicationCommandOptionType, Constants } from 'discord.js';
+import { isArrayOf, isOptionnal, isRecord, isRecordOf, isTypeof, TypeGuard } from './utils/typeguard';
+import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums';
 
 export interface Choice<T extends string | number> {
     readonly name: string;
@@ -15,9 +15,9 @@ export type SlashCommandOptionsData = {
     | {
           readonly type: Exclude<
               SlashCommandOptionsType,
-              | "STRING"
-              | "INTEGER"
-              | "NUMBER"
+              | 'STRING'
+              | 'INTEGER'
+              | 'NUMBER'
               | ApplicationCommandOptionTypes.STRING
               | ApplicationCommandOptionTypes.INTEGER
               | ApplicationCommandOptionTypes.NUMBER
@@ -25,13 +25,13 @@ export type SlashCommandOptionsData = {
           readonly choices?: never;
       }
     | {
-          readonly type: "STRING" | ApplicationCommandOptionTypes.STRING;
+          readonly type: 'STRING' | ApplicationCommandOptionTypes.STRING;
           readonly choices?: ReadonlyArray<Choice<string>>;
       }
     | {
           readonly type:
-              | "INTEGER"
-              | "NUMBER"
+              | 'INTEGER'
+              | 'NUMBER'
               | ApplicationCommandOptionTypes.INTEGER
               | ApplicationCommandOptionTypes.NUMBER;
           readonly choices?: ReadonlyArray<Choice<number>>;
@@ -55,15 +55,15 @@ export function slashCommandOptionsToApplicationCommandOptionDataArray(
 }
 
 export const isChoice = isRecord({
-    name: isTypeof("string"),
-    value: isTypeof("string", "number"),
+    name: isTypeof('string'),
+    value: isTypeof('string', 'number'),
 }) as TypeGuard<Choice<string | number>>;
 
 export const isSlashCommandOptionsData = isRecord({
     type: (o): o is ApplicationCommandOptionType =>
         Constants.ApplicationCommandOptionTypes[o as ApplicationCommandOptionType] !== undefined,
-    description: isTypeof("string"),
-    required: isTypeof("boolean", "undefined"),
+    description: isTypeof('string'),
+    required: isTypeof('boolean', 'undefined'),
     choices: isOptionnal(isArrayOf(isChoice)),
 }) as TypeGuard<SlashCommandOptionsData>;
 

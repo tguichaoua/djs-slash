@@ -1,4 +1,4 @@
-import { Choice } from "./SlashCommandOptions";
+import { Choice } from './SlashCommandOptions';
 
 /**
  * Creates a choices array using key of `record` as name and it's value as `value`.

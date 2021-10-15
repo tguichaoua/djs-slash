@@ -5,35 +5,35 @@ export function isRecord<Specs extends Record<string, TypeGuard<unknown>>>(
     specs: Specs,
 ): (o: unknown) => o is { [K in keyof Specs]: GuardedType<Specs[K]> } {
     return (o): o is { [K in keyof Specs]: GuardedType<Specs[K]> } =>
-        typeof o === "object" &&
+        typeof o === 'object' &&
         o !== null &&
         Object.entries(specs).every(([key, guard]) => guard((o as Record<string, unknown>)[key]));
 }
 
 export function isRecordOf<T>(guard: TypeGuard<T>): (o: unknown) => o is Record<string, T> {
-    return (o): o is Record<string, T> => typeof o === "object" && o !== null && Object.values(o).every(guard);
+    return (o): o is Record<string, T> => typeof o === 'object' && o !== null && Object.values(o).every(guard);
 }
 
-type TypeOfToType<T> = T extends "string"
+type TypeOfToType<T> = T extends 'string'
     ? string
-    : T extends "number"
+    : T extends 'number'
     ? number
-    : T extends "bigint"
+    : T extends 'bigint'
     ? bigint
-    : T extends "boolean"
+    : T extends 'boolean'
     ? boolean
-    : T extends "symbol"
+    : T extends 'symbol'
     ? symbol
-    : T extends "undefined"
+    : T extends 'undefined'
     ? undefined
-    : T extends "object"
+    : T extends 'object'
     ? Record<string, unknown>
-    : T extends "function"
+    : T extends 'function'
     ? Function // eslint-disable-line @typescript-eslint/ban-types
     : never;
 
 export function isTypeof<
-    Types extends ("string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function")[],
+    Types extends ('string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function')[],
 >(...types: Types): (o: unknown) => o is TypeOfToType<Types[number]> {
     return (o): o is TypeOfToType<Types[number]> => types.includes(typeof o);
 }
@@ -43,5 +43,5 @@ export function isArrayOf<T>(guard: TypeGuard<T>): (o: unknown) => o is T[] {
 }
 
 export function isOptionnal<T>(guard: TypeGuard<T>): (o: unknown) => o is T | undefined {
-    return (o): o is T | undefined => typeof o === "undefined" || guard(o);
+    return (o): o is T | undefined => typeof o === 'undefined' || guard(o);
 }

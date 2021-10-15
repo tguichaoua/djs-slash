@@ -1,11 +1,11 @@
-import fs from "fs";
-import path from "path";
-import { ApplicationCommandData, CommandInteraction } from "discord.js";
+import fs from 'fs';
+import path from 'path';
+import { ApplicationCommandData, CommandInteraction } from 'discord.js';
 
-import { GroupSlashCommand, SingleSlashCommand, SlashCommand, SubCommandGroup } from "./command";
-import { isSlashCommandData } from "./data/SlashCommandData";
-import { isGroupData } from "./data";
-import { isRecord } from "./utils/typeguard";
+import { GroupSlashCommand, SingleSlashCommand, SlashCommand, SubCommandGroup } from './command';
+import { isSlashCommandData } from './data/SlashCommandData';
+import { isGroupData } from './data';
+import { isRecord } from './utils/typeguard';
 
 export class SlashCommandManager {
     private constructor(public readonly commands: ReadonlyMap<string, SlashCommand>) {}
@@ -23,11 +23,11 @@ export class SlashCommandManager {
         // If we are using ts-node, also include ts files.
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        const filter = process[Symbol.for("ts-node.register.instance")]
-            ? (file: string) => file.endsWith(".js") || file.endsWith(".ts")
-            : (file: string) => file.endsWith(".js");
+        const filter = process[Symbol.for('ts-node.register.instance')]
+            ? (file: string) => file.endsWith('.js') || file.endsWith('.ts')
+            : (file: string) => file.endsWith('.js');
 
-        const commandFolder = resolveFromEntryPoint(options?.commandFolder ?? "./commands");
+        const commandFolder = resolveFromEntryPoint(options?.commandFolder ?? './commands');
 
         const loadFile = (folder: string, filename: string, map: Map<string, SlashCommand>) => {
             if (!filter(filename)) return;
@@ -35,12 +35,12 @@ export class SlashCommandManager {
             const module = require(filepath) as unknown; // eslint-disable-line @typescript-eslint/no-var-requires
             if (isCommandModule(module)) {
                 const command = new SingleSlashCommand(
-                    filename.substring(0, filename.lastIndexOf(".")),
+                    filename.substring(0, filename.lastIndexOf('.')),
                     module.default,
                 );
                 if (command) map.set(command.name, command);
             } else {
-                console.error("Invalid slash command file :", filepath);
+                console.error('Invalid slash command file :', filepath);
                 return;
             }
         };
@@ -51,7 +51,7 @@ export class SlashCommandManager {
             if (isGroupModule(module)) {
                 return module.default;
             } else {
-                console.error("Invalid group data file :", filepath);
+                console.error('Invalid group data file :', filepath);
                 return {};
             }
         };
@@ -70,7 +70,7 @@ export class SlashCommandManager {
 
                 for (const l2 of fs.readdirSync(folder1, { withFileTypes: true })) {
                     if (l2.isFile()) {
-                        if (l2.name.startsWith("_.")) {
+                        if (l2.name.startsWith('_.')) {
                             const data = loadGroupDataFile(folder1, l2.name);
                             if (data.description !== undefined) description = data.description;
                             defaultPermission = data.defaultPermission;
@@ -84,7 +84,7 @@ export class SlashCommandManager {
                         fs.readdirSync(folder2, { withFileTypes: true })
                             .filter((f) => f.isFile())
                             .forEach((l3) => {
-                                if (l3.name.startsWith("_.")) {
+                                if (l3.name.startsWith('_.')) {
                                     const data = loadGroupDataFile(folder2, l3.name);
                                     if (data.description !== undefined) description = data.description;
                                     defaultPermission = data.defaultPermission;
