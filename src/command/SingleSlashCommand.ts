@@ -1,6 +1,7 @@
 import {
-    ApplicationCommandData,
     ApplicationCommandOptionData,
+    ApplicationCommandSubCommandData,
+    ChatInputApplicationCommandData,
     CommandInteraction,
     CommandInteractionOption,
     Constants,
@@ -33,12 +34,22 @@ export class SingleSlashCommand extends SlashCommand {
         await this.callback(interaction, args as never);
     }
 
-    toApplicationCommandData(): ApplicationCommandData {
+    toApplicationCommandData(): ChatInputApplicationCommandData {
         return {
+            type: Constants.ApplicationCommandTypes.CHAT_INPUT,
             name: this.name,
             description: this.description,
             options: this.options,
             defaultPermission: this.defaultPermission,
+        };
+    }
+
+    toSubCommandData(): ApplicationCommandSubCommandData {
+        return {
+            type: Constants.ApplicationCommandOptionTypes.SUB_COMMAND,
+            options: this.options,
+            name: this.name,
+            description: this.description,
         };
     }
 }

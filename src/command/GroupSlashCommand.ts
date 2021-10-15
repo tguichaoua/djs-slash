@@ -1,4 +1,10 @@
-import { ApplicationCommandData, CommandInteraction } from 'discord.js';
+import {
+    ApplicationCommandSubCommandData,
+    ApplicationCommandSubGroupData,
+    ChatInputApplicationCommandData,
+    CommandInteraction,
+    Constants,
+} from 'discord.js';
 import { SingleSlashCommand } from './SingleSlashCommand';
 import { SlashCommand } from './SlashCommand';
 
@@ -33,33 +39,26 @@ export class GroupSlashCommand extends SlashCommand {
         await executable.execute(interaction);
     }
 
-    toApplicationCommandData(): ApplicationCommandData {
+    toApplicationCommandData(): ChatInputApplicationCommandData {
+        const subCommands: ApplicationCommandSubCommandData[] = Array.from(this.subCommands.values()).map((command) =>
+            command.toSubCommandData(),
+        );
+
+        const groupCommands: ApplicationCommandSubGroupData[] = Array.from(this.groups.values()).map((group) => {
+            return {
+                type: Constants.ApplicationCommandOptionTypes.SUB_COMMAND_GROUP,
+                name: group.name,
+                description: group.description,
+                options: Array.from(group.subCommands.values()).map((command) => command.toSubCommandData()),
+            };
+        });
+
         return {
+            type: Constants.ApplicationCommandTypes.CHAT_INPUT,
             name: this.name,
             description: this.description,
             defaultPermission: this.defaultPermission,
-            options: [
-                ...Array.from(this.subCommands.values()).map((command) => {
-                    return {
-                        type: 'SUB_COMMAND' as const,
-                        ...command.toApplicationCommandData(),
-                    };
-                }),
-                ...Array.from(this.groups.values()).map((group) => {
-                    return {
-                        type: 'SUB_COMMAND_GROUP' as const,
-                        name: group.name,
-                        description: group.description,
-                        defaultPermission: group.defaultPermission,
-                        options: Array.from(group.subCommands.values()).map((command) => {
-                            return {
-                                type: 'SUB_COMMAND' as const,
-                                ...command.toApplicationCommandData(),
-                            };
-                        }),
-                    };
-                }),
-            ],
+            options: [...subCommands, ...groupCommands],
         };
     }
 }
