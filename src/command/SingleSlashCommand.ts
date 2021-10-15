@@ -4,12 +4,12 @@ import {
     CommandInteraction,
     CommandInteractionOption,
     Constants,
-} from "discord.js";
-import { SlashCommandCallback } from "../SlashCommandCallback";
-import { SlashCommandData } from "../data/SlashCommandData";
-import { slashCommandOptionsToApplicationCommandOptionDataArray } from "../SlashCommandOptions";
-import { SlashCommandOptionsType } from "../SlashCommandOptionsType";
-import { SlashCommand } from "./SlashCommand";
+} from 'discord.js';
+import { SlashCommandCallback } from '../SlashCommandCallback';
+import { SlashCommandData } from '../data/SlashCommandData';
+import { slashCommandOptionsToApplicationCommandOptionDataArray } from '../SlashCommandOptions';
+import { SlashCommandOptionsType } from '../SlashCommandOptionsType';
+import { SlashCommand } from './SlashCommand';
 
 export class SingleSlashCommand extends SlashCommand {
     private readonly options: (ApplicationCommandOptionData & { type: SlashCommandOptionsType })[];
@@ -45,25 +45,25 @@ export class SingleSlashCommand extends SlashCommand {
 
 function resolveOption(type: SlashCommandOptionsType, opt: CommandInteractionOption): unknown {
     switch (type) {
-        case "BOOLEAN":
-        case "INTEGER":
-        case "STRING":
-        case "NUMBER":
+        case 'BOOLEAN':
+        case 'INTEGER':
+        case 'STRING':
+        case 'NUMBER':
         case Constants.ApplicationCommandOptionTypes.BOOLEAN:
         case Constants.ApplicationCommandOptionTypes.INTEGER:
         case Constants.ApplicationCommandOptionTypes.STRING:
         case Constants.ApplicationCommandOptionTypes.NUMBER:
             return opt.value;
-        case "CHANNEL":
+        case 'CHANNEL':
         case Constants.ApplicationCommandOptionTypes.CHANNEL:
             return opt.channel;
-        case "ROLE":
+        case 'ROLE':
         case Constants.ApplicationCommandOptionTypes.ROLE:
             return opt.role;
-        case "USER":
+        case 'USER':
         case Constants.ApplicationCommandOptionTypes.USER:
             return opt.user;
-        case "MENTIONABLE":
+        case 'MENTIONABLE':
         case Constants.ApplicationCommandOptionTypes.MENTIONABLE:
             return opt.member ?? opt.user ?? opt.role;
     }

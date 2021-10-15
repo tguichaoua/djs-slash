@@ -1,6 +1,6 @@
-import { ApplicationCommandData, CommandInteraction } from "discord.js";
-import { SingleSlashCommand } from "./SingleSlashCommand";
-import { SlashCommand } from "./SlashCommand";
+import { ApplicationCommandData, CommandInteraction } from 'discord.js';
+import { SingleSlashCommand } from './SingleSlashCommand';
+import { SlashCommand } from './SlashCommand';
 
 export interface SubCommandGroup {
     readonly name: string;
@@ -29,7 +29,7 @@ export class GroupSlashCommand extends SlashCommand {
             groupName !== null
                 ? this.groups.get(groupName)?.subCommands.get(subCommandName)
                 : this.subCommands.get(subCommandName);
-        if (executable === undefined) throw new Error("No executable");
+        if (executable === undefined) throw new Error('No executable');
         await executable.execute(interaction);
     }
 
@@ -41,19 +41,19 @@ export class GroupSlashCommand extends SlashCommand {
             options: [
                 ...Array.from(this.subCommands.values()).map((command) => {
                     return {
-                        type: "SUB_COMMAND" as const,
+                        type: 'SUB_COMMAND' as const,
                         ...command.toApplicationCommandData(),
                     };
                 }),
                 ...Array.from(this.groups.values()).map((group) => {
                     return {
-                        type: "SUB_COMMAND_GROUP" as const,
+                        type: 'SUB_COMMAND_GROUP' as const,
                         name: group.name,
                         description: group.description,
                         defaultPermission: group.defaultPermission,
                         options: Array.from(group.subCommands.values()).map((command) => {
                             return {
-                                type: "SUB_COMMAND" as const,
+                                type: 'SUB_COMMAND' as const,
                                 ...command.toApplicationCommandData(),
                             };
                         }),
