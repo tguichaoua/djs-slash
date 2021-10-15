@@ -1,8 +1,8 @@
-import { ApplicationCommandData, CommandInteraction } from "discord.js";
-import { SlashCommandCallback } from "../SlashCommandCallback";
-import { SlashCommandData } from "../data/SlashCommandData";
-import { SlashCommandOptions } from "../SlashCommandOptions";
-import { GroupSlashCommand } from "./GroupSlashCommand";
+import { ApplicationCommandData, CommandInteraction } from 'discord.js';
+import { SlashCommandCallback } from '../SlashCommandCallback';
+import { SlashCommandData } from '../data/SlashCommandData';
+import { SlashCommandOptions } from '../SlashCommandOptions';
+import { GroupSlashCommand } from './GroupSlashCommand';
 
 export abstract class SlashCommand {
     constructor(

@@ -1,20 +1,20 @@
-import { ChoicesUtils, SlashCommand } from "djs-slash";
+import { ChoicesUtils, SlashCommand } from 'djs-slash';
 
-type LanguageCode = "fr" | "en" | "es";
+type LanguageCode = 'fr' | 'en' | 'es';
 
 const languageNames: Record<LanguageCode, string> = {
-    fr: "French",
-    en: "English",
-    es: "Spanish",
+    fr: 'French',
+    en: 'English',
+    es: 'Spanish',
 };
 
 export default SlashCommand.define(
-    "Set the language",
+    'Set the language',
     {
         options: {
             language: {
-                type: "STRING",
-                description: "The language",
+                type: 'STRING',
+                description: 'The language',
                 required: true,
                 choices: ChoicesUtils.valueNameRecord(languageNames),
             },

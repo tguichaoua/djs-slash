@@ -1,6 +1,6 @@
-import { SlashCommandCallback } from "../SlashCommandCallback";
-import { isSlashCommandOptions, SlashCommandOptions } from "../SlashCommandOptions";
-import { isRecord, isTypeof, TypeGuard } from "../utils/typeguard";
+import { SlashCommandCallback } from '../SlashCommandCallback';
+import { isSlashCommandOptions, SlashCommandOptions } from '../SlashCommandOptions';
+import { isRecord, isTypeof, TypeGuard } from '../utils/typeguard';
 
 export interface SlashCommandData {
     readonly description: string;
@@ -10,8 +10,8 @@ export interface SlashCommandData {
 }
 
 export const isSlashCommandData = isRecord({
-    description: isTypeof("string"),
+    description: isTypeof('string'),
     options: isSlashCommandOptions,
-    callback: isTypeof("function"),
-    defaultPermission: isTypeof("boolean", "undefined"),
+    callback: isTypeof('function'),
+    defaultPermission: isTypeof('boolean', 'undefined'),
 }) as TypeGuard<SlashCommandData>;

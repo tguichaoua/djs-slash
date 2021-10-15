@@ -1,2 +1,2 @@
-export * from "./GroupData";
-export * from "./SlashCommandData";
+export * from './GroupData';
+export * from './SlashCommandData';
