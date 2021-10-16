@@ -1,7 +1,13 @@
 import { SlashCommandOptionsType } from './SlashCommandOptionsType';
-import { ApplicationCommandOptionData, ApplicationCommandOptionType, Constants } from 'discord.js';
+import {
+    ApplicationCommandChannelOptionData,
+    ApplicationCommandChoicesData,
+    ApplicationCommandNonOptionsData,
+    ApplicationCommandOptionType,
+    Constants,
+} from 'discord.js';
 import { isArrayOf, isOptionnal, isRecord, isRecordOf, isTypeof, TypeGuard } from './utils/typeguard';
-import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums';
+import { ApplicationCommandOptionTypes, ChannelTypes } from 'discord.js/typings/enums';
 
 export interface Choice<T extends string | number> {
     readonly name: string;
@@ -18,15 +24,19 @@ export type SlashCommandOptionsData = {
               | 'STRING'
               | 'INTEGER'
               | 'NUMBER'
+              | 'CHANNEL'
               | ApplicationCommandOptionTypes.STRING
               | ApplicationCommandOptionTypes.INTEGER
               | ApplicationCommandOptionTypes.NUMBER
+              | ApplicationCommandOptionTypes.CHANNEL
           >;
           readonly choices?: never;
+          readonly channelTypes?: never;
       }
     | {
           readonly type: 'STRING' | ApplicationCommandOptionTypes.STRING;
           readonly choices?: ReadonlyArray<Choice<string>>;
+          readonly channelTypes?: never;
       }
     | {
           readonly type:
@@ -35,6 +45,12 @@ export type SlashCommandOptionsData = {
               | ApplicationCommandOptionTypes.INTEGER
               | ApplicationCommandOptionTypes.NUMBER;
           readonly choices?: ReadonlyArray<Choice<number>>;
+          readonly channelTypes?: never;
+      }
+    | {
+          readonly type: 'CHANNEL' | ApplicationCommandOptionTypes.CHANNEL;
+          readonly channelTypes?: readonly ChannelTypes[];
+          readonly choices?: never;
       }
 );
 
@@ -42,7 +58,7 @@ export type SlashCommandOptions = Readonly<Record<string, SlashCommandOptionsDat
 
 export function slashCommandOptionsToApplicationCommandOptionDataArray(
     options: SlashCommandOptions,
-): (ApplicationCommandOptionData & { type: SlashCommandOptionsType })[] {
+): (ApplicationCommandNonOptionsData | ApplicationCommandChannelOptionData | ApplicationCommandChoicesData)[] {
     return Object.entries(options).map(([name, o]) => {
         return {
             type: o.type,
@@ -50,7 +66,8 @@ export function slashCommandOptionsToApplicationCommandOptionDataArray(
             description: o.description,
             required: o.required,
             choices: o.choices && [...o.choices],
-        };
+            channel_types: o.channelTypes && [...o.channelTypes],
+        } as ApplicationCommandNonOptionsData | ApplicationCommandChannelOptionData | ApplicationCommandChoicesData;
     });
 }
 
