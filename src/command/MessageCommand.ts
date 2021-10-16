@@ -1,7 +1,21 @@
-import { Constants, MessageApplicationCommandData } from 'discord.js';
+import { Constants, ContextMenuInteraction, MessageApplicationCommandData } from 'discord.js';
+import { MessageCommandData } from '../data/MessageCommandData';
+import { MessageCommandCallback } from '../MessageCommandCallback';
 import { AppCommand } from './AppCommand';
 
 export class MessageCommand extends AppCommand {
+    private readonly callback: MessageCommandCallback;
+
+    constructor(name: string, data: MessageCommandData) {
+        super(name, data.defaultPermission);
+        this.callback = data.callback;
+    }
+
+    /** @internal */
+    async execute(interaction: ContextMenuInteraction): Promise<void> {
+        await this.callback(interaction, interaction.options.getMessage('message', true));
+    }
+
     toApplicationCommandData(): MessageApplicationCommandData {
         return {
             type: Constants.ApplicationCommandTypes.MESSAGE,
