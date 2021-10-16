@@ -1,5 +1,5 @@
 import { ChatInputApplicationCommandData, CommandInteraction } from 'discord.js';
-import { SlashCommandCallback } from '../SlashCommandCallback';
+import { SlashCommandCallback } from '../callbacks';
 import { SlashCommandData } from '../data/SlashCommandData';
 import { SlashCommandOptions } from '../SlashCommandOptions';
 import { GroupSlashCommand } from './GroupSlashCommand';

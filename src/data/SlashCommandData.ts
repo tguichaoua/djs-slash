@@ -1,4 +1,4 @@
-import { SlashCommandCallback } from '../SlashCommandCallback';
+import { SlashCommandCallback } from '../callbacks';
 import { isSlashCommandOptions, SlashCommandOptions } from '../SlashCommandOptions';
 import { isRecord, isTypeof, TypeGuard } from '../utils/typeguard';
 
