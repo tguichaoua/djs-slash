@@ -23,4 +23,18 @@ export class MessageCommand extends AppCommand {
             defaultPermission: this.defaultPermission,
         };
     }
+
+    static define(callback: MessageCommandCallback): MessageCommandData;
+    static define(
+        options: { readonly defaultPermission?: boolean },
+        callback: MessageCommandCallback,
+    ): MessageCommandData;
+    static define(
+        a: { readonly defaultPermission?: boolean } | MessageCommandCallback,
+        b?: MessageCommandCallback,
+    ): MessageCommandData {
+        return typeof a === 'function'
+            ? { callback: a, defaultPermission: undefined }
+            : { callback: b!, defaultPermission: a?.defaultPermission };
+    }
 }

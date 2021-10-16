@@ -23,4 +23,15 @@ export class UserCommand extends AppCommand {
             defaultPermission: this.defaultPermission,
         };
     }
+
+    static define(callback: UserCommandCallback): UserCommandData;
+    static define(options: { readonly defaultPermission?: boolean }, callback: UserCommandCallback): UserCommandData;
+    static define(
+        a: { readonly defaultPermission?: boolean } | UserCommandCallback,
+        b?: UserCommandCallback,
+    ): UserCommandData {
+        return typeof a === 'function'
+            ? { callback: a, defaultPermission: undefined }
+            : { callback: b!, defaultPermission: a?.defaultPermission };
+    }
 }
