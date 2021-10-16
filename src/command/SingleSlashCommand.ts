@@ -6,7 +6,7 @@ import {
     CommandInteractionOption,
     Constants,
 } from 'discord.js';
-import { SlashCommandCallback } from '../SlashCommandCallback';
+import { SlashCommandCallback } from '../callbacks';
 import { SlashCommandData } from '../data/SlashCommandData';
 import { slashCommandOptionsToApplicationCommandOptionDataArray } from '../SlashCommandOptions';
 import { SlashCommandOptionsType } from '../SlashCommandOptionsType';

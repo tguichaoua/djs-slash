@@ -1,4 +1,4 @@
-import { MessageCommandCallback } from '../MessageCommandCallback';
+import { MessageCommandCallback } from '../callbacks';
 import { isRecord, isTypeof, TypeGuard } from '../utils/typeguard';
 
 export interface MessageCommandData {

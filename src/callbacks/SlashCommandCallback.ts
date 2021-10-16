@@ -1,6 +1,6 @@
 import { CommandInteraction } from 'discord.js';
-import { SlashCommandOptions } from './SlashCommandOptions';
-import { ResolveSlashCommandOptionsType } from './SlashCommandOptionsType';
+import { SlashCommandOptions } from '../SlashCommandOptions';
+import { ResolveSlashCommandOptionsType } from '../SlashCommandOptionsType';
 
 export type SlashCommandCallback<Opt extends SlashCommandOptions = never> = (
     interaction: CommandInteraction,

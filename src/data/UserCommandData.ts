@@ -1,4 +1,4 @@
-import { UserCommandCallback } from '../UserCommandCallback';
+import { UserCommandCallback } from '../callbacks';
 import { isRecord, isTypeof, TypeGuard } from '../utils/typeguard';
 
 export interface UserCommandData {

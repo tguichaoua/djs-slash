@@ -11,11 +11,8 @@ import {
     MessageCommand,
     AppCommand,
 } from './command';
-import { isSlashCommandData } from './data/SlashCommandData';
-import { isGroupData } from './data';
+import { isGroupData, isMessageCommandData, isUserCommandData, isSlashCommandData } from './data';
 import { isRecord, TypeGuard } from './utils/typeguard';
-import { isUserCommandData } from './data/UserCommandData';
-import { isMessageCommandData } from './data/MessageCommandData';
 
 export class SlashCommandManager {
     private constructor(
