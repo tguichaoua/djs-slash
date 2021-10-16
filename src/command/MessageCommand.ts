@@ -1,5 +1,5 @@
 import { Constants, ContextMenuInteraction, MessageApplicationCommandData } from 'discord.js';
-import { MessageCommandData } from '../data/MessageCommandData';
+import { MessageCommandData } from '../data';
 import { MessageCommandCallback } from '../callbacks';
 import { AppCommand } from './AppCommand';
 
