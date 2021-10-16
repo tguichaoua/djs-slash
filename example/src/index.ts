@@ -12,7 +12,8 @@ client.once('ready', async (client) => {
 });
 
 client.on('interactionCreate', async (interaction) => {
-    if (interaction.isCommand()) await commands.execute(interaction);
+    interaction.isContextMenu;
+    await commands.execute(interaction);
 });
 
 (async () => {
