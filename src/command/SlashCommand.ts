@@ -1,20 +1,19 @@
-import { ApplicationCommandData, CommandInteraction } from 'discord.js';
+import { ChatInputApplicationCommandData, CommandInteraction } from 'discord.js';
 import { SlashCommandCallback } from '../SlashCommandCallback';
 import { SlashCommandData } from '../data/SlashCommandData';
 import { SlashCommandOptions } from '../SlashCommandOptions';
 import { GroupSlashCommand } from './GroupSlashCommand';
+import { AppCommand } from './AppCommand';
 
-export abstract class SlashCommand {
-    constructor(
-        public readonly name: string,
-        public readonly description: string,
-        public readonly defaultPermission: boolean | undefined,
-    ) {}
+export abstract class SlashCommand extends AppCommand {
+    constructor(name: string, public readonly description: string, defaultPermission: boolean | undefined) {
+        super(name, defaultPermission);
+    }
 
     /** @internal */
     abstract execute(interaction: CommandInteraction): Promise<void>;
 
-    abstract toApplicationCommandData(): ApplicationCommandData;
+    abstract toApplicationCommandData(): ChatInputApplicationCommandData;
 
     isGroupCommand(): this is GroupSlashCommand {
         return this instanceof GroupSlashCommand;
