@@ -35,6 +35,6 @@ export class MessageCommand extends AppCommand {
     ): MessageCommandData {
         return typeof a === 'function'
             ? { callback: a, defaultPermission: undefined }
-            : { callback: b!, defaultPermission: a?.defaultPermission };
+            : { callback: b!, defaultPermission: a?.defaultPermission }; // eslint-disable-line @typescript-eslint/no-non-null-assertion
     }
 }
