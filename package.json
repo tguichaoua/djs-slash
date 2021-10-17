@@ -1,7 +1,7 @@
 {
     "name": "djs-slash",
     "version": "0.1.0",
-    "description": "A Slash Command handler for discord.js v13",
+    "description": "An application command handler for discord.js v13",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
@@ -24,7 +24,9 @@
         "djs",
         "discord",
         "slash",
-        "command"
+        "command",
+        "context",
+        "menu"
     ],
     "author": {
         "name": "Tristan Guichaoua",
