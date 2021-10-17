@@ -62,7 +62,7 @@ const commands = SlashCommandManager.create();
 ```
 
 
-### Full script exampple
+### Full script example
 
 ```ts
 import { Client, Intents } from "discord.js";
