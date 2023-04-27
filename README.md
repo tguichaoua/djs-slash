@@ -1,16 +1,17 @@
 <h1 align="center">DJS-SLASH</h1>
 <p align="center">
+    <span><img alt="unmaintained" src="https://img.shields.io/badge/status-unmaintained-lightgrey?style=for-the-badge" height="20"/></span>
     <a href="https://www.npmjs.com/package/djs-slash" target="_blank">
-        <img alt="Version" src="https://img.shields.io/npm/v/djs-slash.svg">
+        <img alt="Version" src="https://img.shields.io/npm/v/djs-slash.svg?style=for-the-badge" height="20">
     </a>
      <a href="https://github.com/tguichaoua/djs-slash/blob/main/LICENSE" target="_blank">
-        <img alt="License: MIT" src="https://img.shields.io/github/license/tguichaoua/djs-slash" />
+        <img alt="License: MIT" src="https://img.shields.io/github/license/tguichaoua/djs-slash?style=for-the-badge" height="20"/>
     </a>
     <a href="https://node.green/#ES2021">
-        <img src="https://img.shields.io/badge/node-%3E%3D16.6.0-blue.svg" />
+        <img src="https://img.shields.io/badge/node-%3E%3D16.6.0-blue.svg?style=for-the-badge" height="20"/>
     </a>
     <a href="https://www.npmjs.com/package/discord.js">
-        <img alt="Dependency discordjs" src="https://img.shields.io/npm/dependency-version/djs-slash/peer/discord.js" />
+        <img alt="Dependency discordjs" src="https://img.shields.io/npm/dependency-version/djs-slash/peer/discord.js?style=for-the-badge" height="20"/>
     </a>
 </p>
 
